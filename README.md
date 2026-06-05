@@ -21,6 +21,22 @@ Bu proje, trafik kazalarının en büyük nedenlerinden biri olan sürücü yorg
 * **PyTorch:** Özel göz durumu (açık/kapalı) sınıflandırma CNN modeli (`eye_model.pt`)
 * **Ultralytics YOLO:** Hızlı ve tutarlı nesne/telefon tespiti (`yolov8n.pt`)
 
+🚀 Kurulum ve Çalıştırma Yönergesi
+Projeyi bilgisayarınızda yerel olarak çalıştırmak için aşağıdaki adımları sırasıyla uygulayınız:
+1. Projeyi Bilgisayarınıza İndirin:
+Terminali veya komut satırını açın ve projeyi klonlayın (veya GitHub üzerinden ZIP olarak indirip klasöre çıkartın):
+git clone <github-depo-linkiniz-buraya-gelecek>
+2. Proje Klasörüne Girin:
+Terminal üzerinden projenin bulunduğu klasörün içine girin:
+cd surucu
+3. Gerekli Kütüphaneleri Kurun:
+Sistemin çalışması için gerekli olan Python kütüphanelerini tek seferde kurmak için aşağıdaki komutu çalıştırın:
+pip install -r requirements.txt
+4. Uygulamayı Başlatın:
+Tüm kurulumlar tamamlandıktan sonra, uygulamayı başlatmak için şu komutu çalıştırın:
+streamlit run web_app.py
+Not: Bu komutu çalıştırdıktan sonra tarayıcınızda otomatik olarak bir sekme açılacak ve sistem arayüzü karşınıza gelecektir.
+
 ## 📁 Proje Dosya Yapısı
 
 ```text
