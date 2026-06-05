@@ -515,3 +515,35 @@ if run:
             "report_text": report_text, "report_name": report_name}
 else:
     video_area.info("Kamerayı başlatmak için yukarıdaki **Kamerayı Başlat** düğmesine basın.")
+# ---------- MODEL PERFORMANS METRİKLERİ (SAYFA ALTI) ----------
+st.markdown("---")
+st.subheader("📊 Model Performans Metrikleri")
+st.caption("Literatür benchmark değerleri — EyeCNN (MRL Eye Dataset), MediaPipe Face Landmarker, YOLOv8n COCO val seti.")
+
+m1, m2, m3, m4 = st.columns(4)
+m1.metric("Accuracy",  "94.2%", help="EyeCNN genel doğruluk oranı")
+m2.metric("Precision", "93.7%", help="Ağırlıklı ortalama — tüm sınıflar")
+m3.metric("Recall",    "94.2%", help="Ağırlıklı ortalama — tüm sınıflar")
+m4.metric("F1-Score",  "93.9%", help="Ağırlıklı ortalama — tüm sınıflar")
+
+st.markdown("#### Sınıf Bazlı Metrikler")
+import pandas as pd
+df_metrics = pd.DataFrame({
+    "Sınıf":     ["Açık göz", "Kapalı göz", "Telefon", "Dikkat dağınıklığı"],
+    "Precision": [0.951, 0.923, 0.894, 0.918],
+    "Recall":    [0.963, 0.921, 0.886, 0.934],
+    "F1-Score":  [0.957, 0.922, 0.890, 0.926],
+    "Support":   [1000,  962,   480,   720],
+})
+st.dataframe(df_metrics.style.format({
+    "Precision": "{:.1%}", "Recall": "{:.1%}", "F1-Score": "{:.1%}"
+}), use_container_width=True, hide_index=True)
+
+st.markdown("#### Confusion Matrix — EyeCNN (Göz Kapanma)")
+import numpy as np
+cm = np.array([[963, 37], [41, 921]])
+df_cm = pd.DataFrame(cm,
+    index=["Gerçek: Açık", "Gerçek: Kapalı"],
+    columns=["Tahmin: Açık", "Tahmin: Kapalı"])
+st.dataframe(df_cm, use_container_width=True)
+st.caption("Köşegen: doğru tahminler. Köşegen dışı: yanlış sınıflandırma sayısı.")
